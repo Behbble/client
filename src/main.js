@@ -269,7 +269,7 @@ function displayBehbble(behbble) {
 
 			ELEMENTS.behbbleData.innerHTML += `
 				<video class="behbble-video" controls>
-					<source src="${behbble.stream_url}" type="video/${behbble.type === ".WEBM" ? "webm" : "mp4"}">
+					<source src="${behbble.stream_url}" type="${behbble.type}">
 					Your browser does not support the video tag.
 				</video>
 			`;
