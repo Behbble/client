@@ -1,0 +1,28 @@
+{
+  "name": "behbble-client",
+  "version": "1.0.0",
+  "description": "BehbbleStream is a multimedia streaming service that is able to access 'Behbbles' from the servers that output them, 'Farms'.",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "nodemon index.js"
+  },
+  "author": "ParretLabs",
+  "license": "ISC",
+  "dependencies": {
+    "@node-minify/core": "^6.2.0",
+    "@node-minify/cssnano": "^6.2.0",
+    "@node-minify/terser": "^6.2.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public/js/main.js"
+    ],
+    "ext": "html,css,js",
+    "delay": 100
+  }
+}

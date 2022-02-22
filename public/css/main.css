@@ -1,0 +1,15 @@
+.main-container {
+	position: absolute;
+	top: 5vh;
+	left: 5vw;
+	width: 90vw;
+	height: 90vh;
+}
+
+.nav-tabs .nav-link.active {
+	background-color: #303030;
+}
+
+.behbble-video {
+	width: 100%;
+}
