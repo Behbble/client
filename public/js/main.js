@@ -82,7 +82,7 @@ ELEMENTS.addFarmBtn.addEventListener('click', async () => {
 	let farmURL = getValidURL(ELEMENTS.farmAddressInput.value.trim());
 	if(farmURL){
 		ELEMENTS.addFarmBtn.innerText = "Loading Farm...";
-		await fetch(farmURL + "/info", {
+		await fetch(farmURL + "/info/", {
 			headers: {
 				'Content-Type': "application/json"
 			}
@@ -132,8 +132,6 @@ function removeFarm(index) {
 }
 
 function updateFarmUI() {
-	
-
 	ELEMENTS.farmTabs.innerHTML = "";
 
 	farms.forEach((farm, idx) => {
@@ -224,10 +222,8 @@ function updateBehbbleSelector() {
 }
 
 function getStatus() {
-	
-
 	if(!farms[currentFarm]) return;
-	fetch(farms[currentFarm].farm_url + "/status", {
+	fetch(farms[currentFarm].farm_url + "/status/", {
 		headers: {
 			'Content-Type': 'application/json',
 			'pragma': 'no-cache',
@@ -244,7 +240,7 @@ function getStatus() {
 }
 
 async function getBehbbleList() {
-	let json = await fetch(farms[currentFarm].farm_url + "/shepard/" + farms[currentFarm].shepard, {
+	let json = await fetch(`${farms[currentFarm].farm_url}/shepard/${farms[currentFarm].shepard}/`, {
 		headers: {
 			'Content-Type': 'application/json',
 			'pragma': 'no-cache',
@@ -274,7 +270,7 @@ function resetFarmHandlers() {
 		ELEMENTS.callShepardBtn.innerText = "Calling Shepard...";
 		ELEMENTS.callShepardBtn.disabled = true;
 
-		let json = await fetch(farms[currentFarm].farm_url + "/call_shepard", {
+		let json = await fetch(farms[currentFarm].farm_url + "/call_shepard/", {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json',
@@ -336,14 +332,12 @@ function displayBehbble(behbble) {
 
 			ELEMENTS.behbbleData.innerHTML += `
 				<video class="behbble-video" controls>
-					<source src="${behbble.stream_url}" type="video/${behbble.type === ".WEBM" ? "webm" : "mp4"}">
+					<source src="${behbble.stream_url}" type="${behbble.type}">
 					Your browser does not support the video tag.
 				</video>
 			`;
 		}
 	}
-
-	console.log(behbble, ELEMENTS.behbbleData);
 
 	if(ELEMENTS.openStreamBtn){
 		ELEMENTS.openStreamBtn.addEventListener('click', async () => {

@@ -19,7 +19,7 @@ ELEMENTS.addFarmBtn.addEventListener('click', async () => {
 	let farmURL = getValidURL(ELEMENTS.farmAddressInput.value.trim());
 	if(farmURL){
 		ELEMENTS.addFarmBtn.innerText = "Loading Farm...";
-		await fetch(farmURL + "/info", {
+		await fetch(farmURL + "/info/", {
 			headers: {
 				'Content-Type': "application/json"
 			}
@@ -160,7 +160,7 @@ function updateBehbbleSelector() {
 
 function getStatus() {
 	if(!farms[currentFarm]) return;
-	fetch(farms[currentFarm].farm_url + "/status", {
+	fetch(farms[currentFarm].farm_url + "/status/", {
 		headers: {
 			'Content-Type': 'application/json',
 			'pragma': 'no-cache',
@@ -177,7 +177,7 @@ function getStatus() {
 }
 
 async function getBehbbleList() {
-	let json = await fetch(farms[currentFarm].farm_url + "/shepard/" + farms[currentFarm].shepard, {
+	let json = await fetch(`${farms[currentFarm].farm_url}/shepard/${farms[currentFarm].shepard}/`, {
 		headers: {
 			'Content-Type': 'application/json',
 			'pragma': 'no-cache',
@@ -207,7 +207,7 @@ function resetFarmHandlers() {
 		ELEMENTS.callShepardBtn.innerText = "Calling Shepard...";
 		ELEMENTS.callShepardBtn.disabled = true;
 
-		let json = await fetch(farms[currentFarm].farm_url + "/call_shepard", {
+		let json = await fetch(farms[currentFarm].farm_url + "/call_shepard/", {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json',
